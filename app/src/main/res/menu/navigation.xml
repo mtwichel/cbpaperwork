@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_overShort"
+        android:icon="@drawable/plusminus"
+        android:title="Over Short" />
+
+    <item
+        android:id="@+id/navigation_deposit"
+        android:icon="@drawable/dollarsign"
+        android:title="Deposit" />
+
+    <item
+        android:id="@+id/navigation_tills"
+        android:icon="@drawable/till"
+        android:title="Tills" />
+    <item
+        android:id="@+id/navigation_change_bag"
+        android:icon="@drawable/coins"
+        android:title="Change Bag"/>
+
+</menu>

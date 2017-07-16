@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tillHeader"
+        android:text="Till:"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:textSize="25sp"/>
+
+
+    <TextView
+        android:id="@+id/twentyTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+
+        android:layout_below="@id/tillHeader"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="$20"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tenTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/twentyTill"
+        android:layout_below="@+id/twentyTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="$10"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/fiveTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tenTill"
+        android:layout_below="@+id/tenTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="$5"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/oneTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fiveTill"
+        android:layout_below="@+id/fiveTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="$1"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/quarterTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oneTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="0.25"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dimeTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/quarterTill"
+        android:layout_below="@+id/quarterTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="0.10"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/nickelTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/dimeTill"
+        android:layout_below="@+id/dimeTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="0.05"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/pennyTill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nickelTill"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="0.01"
+        android:textSize="20sp" />
+
+
+
+
+    <EditText
+        android:id="@+id/twentyTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/twentyTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/tenTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tenTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/fiveTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fiveTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/oneTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/oneTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/quarterTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/quarterTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/dimeTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dimeTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/nickelTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/nickelTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:id="@+id/pennyTillEntry"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pennyTill"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:selectAllOnFocus="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tillTotal"
+        android:layout_below="@id/pennyTill"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text=""
+
+        />
+
+</RelativeLayout>

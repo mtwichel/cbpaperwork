@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.android.cbpaperwork.PaperworkActivity"
+    tools:showIn="@layout/activity_paperwork">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true">
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!---->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="8dp">-->
+
+
+            //bills text
+
+
+            <TextView
+                android:id="@+id/gross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/bills"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Gross Sales:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/card_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/gross"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Gift Card Sales:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/card_redeems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/card_sales"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Gift Card Redeems:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/adjusted_gross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/card_redeems"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Adjusted Gross Sales:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/voids"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/adjusted_gross"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Voids:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/discounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/voids"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Discounts:"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/adjusted_net"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/discounts"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Adjusted Net Sales:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/adjusted_net"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Deposit:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/visa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/deposit"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Visa:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/master_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/visa"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Master Card:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/amex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/master_card"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Amex:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/discover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/amex"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Discover:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/paid_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/discover"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Paid Out:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/over_short"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/paid_out"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Over/Short"
+                android:textStyle="bold"
+                android:textSize="30sp" />
+
+
+            <EditText
+                android:id="@+id/grossEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/gross"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/card_salesEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/card_sales"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/card_redeemsEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/card_redeems"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/adjusted_gross_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/adjusted_gross"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:text="AdjustedGross"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/voidsEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/voids"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/discountsEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/discounts"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/adjusted_net_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/adjusted_net"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:text="AdjustedNet"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/deposit_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/deposit"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:text="Deposit"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/visaEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/visa"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/master_cardEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/master_card"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/amexEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/amex"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/discoverEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/discover"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <EditText
+                android:id="@+id/paid_outEntry"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/paid_out"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/over_short_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/over_short"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:text="OVERSHORT"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
+            <!--</RelativeLayout>-->
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

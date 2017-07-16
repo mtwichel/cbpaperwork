@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.android.cbpaperwork.PaperworkActivity"
+    tools:showIn="@layout/content_record_view">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/bankBagHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Bank Bag:"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/twentyBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+
+                android:layout_below="@id/bankBagHeader"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$20"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tenBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/twentyBankBag"
+                android:layout_below="@+id/twentyBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$10"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fiveBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tenBankBag"
+                android:layout_below="@+id/tenBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$5"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/oneBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/fiveBankBag"
+                android:layout_below="@+id/fiveBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$1"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/quarterBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/oneBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Quarter Rolls"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/dimeBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/quarterBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Dime Rolls"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/nickelBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dimeBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Nickle Rolls"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/pennyBankBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nickelBankBag"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Penny Rolls"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/twentyBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/tenBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/fiveBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/oneBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/quarterBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/dimeBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/nickelBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/pennyBankBagDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twentyBankBag"
+                android:layout_toEndOf="@id/twentyBankBag"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/bankBagTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pennyBankBag"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:text=""
+                android:textSize="30sp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/quarterWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/quarterBankBagEntry"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="100dp"
+                android:text="+0.50"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

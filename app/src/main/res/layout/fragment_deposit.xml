@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.android.cbpaperwork.PaperworkActivity"
+    tools:showIn="@layout/activity_paperwork">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true">
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!---->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="8dp">-->
+
+
+            //bills text
+
+            <TextView
+                android:id="@+id/totalDeposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:padding="5dp"
+                android:text="Deposit"
+                android:textSize="33sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/addCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/totalDeposit"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+
+                android:text="Add Check" />
+
+            <ListView
+                android:id="@+id/checks"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/addCheck">
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/bills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/checks"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="2dp"
+                android:text="Bills"
+                android:textSize="33sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hundred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/bills"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$100"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/fifty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/hundred"
+                android:layout_below="@+id/hundred"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$50"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/twenty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/fifty"
+                android:layout_below="@+id/fifty"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$20"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/twenty"
+                android:layout_below="@+id/twenty"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$10"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/ten"
+                android:layout_below="@+id/ten"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$5"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/five"
+                android:layout_below="@+id/five"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$2"
+                android:textSize="30sp" />
+
+
+            <TextView
+                android:id="@+id/one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/two"
+                android:layout_below="@+id/two"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="$1"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/coins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/one"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="24dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="2dp"
+                android:text="Coins"
+                android:textSize="33sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dollarCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/coins"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="1.00"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/fiftyCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/one"
+                android:layout_below="@+id/dollarCoin"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="0.50"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/quarter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/fiftyCent"
+
+                android:layout_below="@+id/fiftyCent"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="0.25"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/dime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/quarter"
+                android:layout_below="@+id/quarter"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="0.10"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/nickel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/dime"
+                android:layout_alignEnd="@+id/dime"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="0.05"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/penny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nickel"
+                android:layout_alignEnd="@+id/nickel"
+                android:layout_marginLeft="50dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="0.01"
+                android:textSize="30sp" />
+
+
+            <EditText
+                android:id="@+id/hundredEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/hundred"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/fiftyEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/fifty"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/twentyEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/twenty"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/tenEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/ten"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/fiveEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/five"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/twoEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/two"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/oneEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/one"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/dollarCoinEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/dollarCoin"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/fiftyCentEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/fiftyCent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/quarterEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/quarter"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/dimeEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/dime"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/nickleEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/nickel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+            <EditText
+                android:id="@+id/pennyEntry"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/penny"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                 />
+
+
+            <!--</RelativeLayout>-->
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

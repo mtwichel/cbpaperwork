@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_overShort"
+            android:icon="@drawable/plusminus"
+            android:title="Over/Short" />
+
+        <item
+            android:id="@+id/nav_deposit"
+            android:icon="@drawable/dollarsign"
+            android:title="Deposit" />
+        <item
+            android:id="@+id/nav_tills"
+            android:icon="@drawable/till"
+            android:title="Tills" />
+
+        <item
+            android:id="@+id/nav_bank_bag"
+            android:icon="@drawable/coins"
+            android:title="Change Bag" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/nav_records"
+            android:icon="@drawable/folder"
+            android:title="Records" />
+    </group>
+
+</menu>
