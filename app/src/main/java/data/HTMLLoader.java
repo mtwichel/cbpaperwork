@@ -24,7 +24,7 @@ public class HTMLLoader {
                 "<html>\n" +
                         "<head></head>\n" +
                         "<body>\n" +
-                        "<br><br><br>" +
+                        "<br><br><br><br><br>" +
                         "\n" +
                         "<center>\n" +
                         "\n" +
@@ -280,7 +280,7 @@ public class HTMLLoader {
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>$1</td>\n" +
-                        "    <td style =\"border-bottom:1px solid black;\"0"+data.getTillData(Till.ONE, 1)+"</td>\n" +
+                        "    <td style =\"border-bottom:1px solid black;\">" + data.getTillData(Till.ONE, 1) + "</td>\n" +
                         "    <td>=</td>\n" +
                         "    <td style =\"border-bottom:1px solid black;\">"+format.format(data.getTillData(Till.ONE, 1)*1)+"</td>\n" +
                         "  </tr>\n" +
