@@ -84,6 +84,8 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
 
         this.id = data.getId();
 
+        this.id = data.getId();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -104,7 +106,7 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_paperwork, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -247,6 +249,16 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
 
         JSONHelper.exportToJSON(this, dataWrapper);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!permissionGranted) {
+            checkPermissions();
+        }
+
+        JSONHelper.exportToJSON(this, dataWrapper);
     }
 
     @Override
