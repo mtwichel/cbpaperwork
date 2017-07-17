@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import data.Check;
 import data.PaperworkData;
+import data.PaperworkDataWrapper;
 import fragments.BankBagFrag;
 import fragments.DepositFrag;
 import fragments.OneTillFrag;
@@ -39,7 +40,10 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
     public static final String REQUEST_CHECK = "request_check";
     public static final String INTENT_EXTRA = "intent_extra";
     private static final int REQUEST_PERMISSION_WRITE = 1001;
+    public static String INTENT_NEW = "intent_new";
+    public static String INTENT_ID = "intent_id";
     private PaperworkData data;
+    private PaperworkDataWrapper dataWrapper;
     private String id;
 
     private DatePickerDialog datePickerDialog;
@@ -69,21 +73,13 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
             }
         });
 
-        String recivingId = getIntent().getStringExtra(INTENT_EXTRA);
-
-        if(recivingId.equals("00")){
-            //new paperwork
-            data = new PaperworkData("" + PaperworkData.IDCounter.getId());
-            JSONHelper.exportToJSON(this, data);
-            Toast.makeText(this, data.getId(), Toast.LENGTH_SHORT).show();
-
-        }else{
-            //old paperwork
-            data = JSONHelper.importFromJSON(this, recivingId);
-            if (data == null) {
-                Toast.makeText(this, "No Data", Toast.LENGTH_LONG).show();
-            }
-
+        dataWrapper = getIntent().getParcelableExtra(INTENT_EXTRA);
+        if (getIntent().getBooleanExtra(INTENT_NEW, true)) {
+            //new data
+            data = new PaperworkData(dataWrapper.getNewId());
+            dataWrapper.addData(data);
+        } else {
+            data = dataWrapper.getData("" + getIntent().getIntExtra(INTENT_ID, 1));
         }
 
         this.id = data.getId();
@@ -108,7 +104,7 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_paperwork, menu);
         return true;
     }
 
@@ -151,7 +147,6 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
                 data.revertToPreDate();
             }
         }).show();
-        ;
 
     }
 
@@ -249,14 +244,17 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
         if(!permissionGranted){
             checkPermissions();
         }
-        JSONHelper.exportToJSON(this, data);
+
+        JSONHelper.exportToJSON(this, dataWrapper);
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         Log.i("Main", "On Restart");
-        data = JSONHelper.importFromJSON(this, id);
+
+        JSONHelper.importFromJSON(this, data.getId());
     }
 
     /* Checks if external storage is available for read and write */
