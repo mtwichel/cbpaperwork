@@ -250,16 +250,6 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (!permissionGranted) {
-            checkPermissions();
-        }
-
-        JSONHelper.exportToJSON(this, dataWrapper);
-    }
-
-    @Override
     protected void onRestart() {
         super.onRestart();
         Log.i("Main", "On Restart");
