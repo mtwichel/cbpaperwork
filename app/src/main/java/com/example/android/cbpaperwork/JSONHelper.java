@@ -20,6 +20,7 @@ import java.util.Map;
 
 import data.Date;
 import data.PaperworkData;
+import data.PaperworkDataWrapper;
 
 public class JSONHelper {
 
@@ -28,18 +29,11 @@ public class JSONHelper {
     public static final String FILE_NAME = "data.json";
     public static final String TAG = "JSONHelper";
 
-    private static Map<String, PaperworkData> datas = new HashMap<>();
 
-
-    public static boolean exportToJSON(Context context, PaperworkData data){
-        datas.put(data.getId(), data);
-
-        DataConverter cDatas = new DataConverter();
-        cDatas.setData(datas);
-
+    public static boolean exportToJSON(Context context, PaperworkDataWrapper data) {
         Gson gson = new Gson();
 
-        String jsonString = gson.toJson(cDatas);
+        String jsonString = gson.toJson(data);
         Log.i(TAG, "export to Json" + jsonString);
 
         FileOutputStream fileOutputStream= null;
@@ -64,20 +58,48 @@ public class JSONHelper {
         return false;
     }
 
-    public static PaperworkData importFromJSON(Context context, String id){
+    public static PaperworkDataWrapper importFromJSON(Context context) {
         FileReader fileReader = null;
         File file = new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 
         try {
             fileReader = new FileReader(file);
             Gson gson = new Gson();
-            DataConverter cData = gson.fromJson(fileReader, DataConverter.class);
-            PaperworkData data = cData.getData().get(id);
-            return data;
+            PaperworkDataWrapper datas = gson.fromJson(fileReader, PaperworkDataWrapper.class);
+            return datas;
+
+        } catch (FileNotFoundException e) {
+            Toast.makeText(context, "Made File", Toast.LENGTH_SHORT).show();
+            exportToJSON(context, new PaperworkDataWrapper());
+            return importFromJSON(context);
+
+        } finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+
+    public static PaperworkData importFromJSON(Context context, String id) {
+        FileReader fileReader = null;
+        File file = new File(Environment.getExternalStorageDirectory(), FILE_NAME);
+
+        try {
+            fileReader = new FileReader(file);
+            Gson gson = new Gson();
+            PaperworkDataWrapper datas = gson.fromJson(fileReader, PaperworkDataWrapper.class);
+            return datas.getData(id);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-//            exportToJSON(context, new PaperworkData(id));
+            exportToJSON(context, new PaperworkDataWrapper());
+            Toast.makeText(context, "Made File", Toast.LENGTH_SHORT).show();
             return null;
         } finally {
             if (fileReader != null) {
@@ -91,42 +113,9 @@ public class JSONHelper {
         }
     }
 
-    public static Map<String, PaperworkData> importAllFromJSON(Context context){
-        FileReader fileReader = null;
+
+    public static void deleteJson() {
         File file = new File(Environment.getExternalStorageDirectory(), FILE_NAME);
-
-        try {
-            fileReader = new FileReader(file);
-            Gson gson = new Gson();
-            DataConverter cData = gson.fromJson(fileReader, DataConverter.class);
-            Map<String, PaperworkData> data = cData.getData();
-            return data;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-//            exportToJSON(context, new PaperworkData(id));
-            return new HashMap<>();
-        } finally {
-            if (fileReader != null) {
-                try {
-                    fileReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
-
-    static class DataConverter{
-        Map<String, PaperworkData> data;
-
-        public Map<String, PaperworkData> getData() {
-            return data;
-        }
-
-        public void setData(Map<String, PaperworkData> data) {
-            this.data = data;
-        }
+        file.delete();
     }
 }
