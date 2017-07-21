@@ -2,6 +2,7 @@ package data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,11 +103,36 @@ public class Deposit implements Parcelable {
                 (data[QUARTER] * 0.25) +
                 (data[FIFTY_CENT] * 0.5) +
                 (data[DOLLAR_COIN]);
+        for (int i = 0; i < checks.size(); i++) {
+            checkTotal += checks.get(i).getAmount();
+        }
     }
 
     public void addCheck(Check check) {
         checks.add(check);
         updateDeposit();
+    }
+
+    public void editCheck(String number, Check check) {
+        checks.remove(findCheckByNumber(number));
+        checks.add(check);
+        updateDeposit();
+    }
+
+    public void deleteCheck(String checkNumber, Check check) {
+        Log.d("Deposit", "Check Deleted with Num: " + checkNumber);
+        checks.remove(findCheckByNumber(checkNumber));
+        updateDeposit();
+    }
+
+
+    public Check findCheckByNumber(String number) {
+        for (int i = 0; i < checks.size(); i++) {
+            if (checks.get(i).getCheckNumber().equals(number)) {
+                return checks.get(i);
+            }
+        }
+        return null;
     }
 
     public List<Check> getChecks() {
@@ -149,4 +175,6 @@ public class Deposit implements Parcelable {
             return new Deposit[size];
         }
     };
+
+
 }

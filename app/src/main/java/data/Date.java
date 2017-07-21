@@ -79,6 +79,9 @@ public class Date implements Parcelable {
     }
 
     public void setDate(int day, int month, int year) {
+        dayPre = this.day;
+        monthPre = this.month;
+        yearPre = this.year;
         this.day = day;
         this.month = month;
         this.year = year;

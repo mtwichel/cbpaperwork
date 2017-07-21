@@ -47,8 +47,8 @@ public class OneTillFrag extends Fragment implements TextWatcher {
     private TextView tillTotal;
 
     private int tillNumber;
-    private int tillDisplayNumber;
     private PaperworkData data;
+    private String tillName;
 
     public OneTillFrag() {
         // Required empty public constructor
@@ -76,27 +76,27 @@ public class OneTillFrag extends Fragment implements TextWatcher {
         // Inflate the layout for this fragment
         if (getArguments() != null) {
             tillNumber = getArguments().getInt(ARG_TILL_NUMBER);
-            tillDisplayNumber = tillNumber +1;
+
             data = getArguments().getParcelable(ARG_TILL_DATA);
+            tillName = data.getTillName(tillNumber);
         }
         Log.i("Main", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_one_till, container, false);
 
 
-
-        twenty = (EditText) view.findViewById(R.id.twentyTillEntry);
-        ten = (EditText) view.findViewById(R.id.tenTillEntry);
-        five = (EditText) view.findViewById(R.id.fiveTillEntry);
-        one = (EditText) view.findViewById(R.id.oneTillEntry);
-        quarter = (EditText) view.findViewById(R.id.quarterTillEntry);
-        dime = (EditText) view.findViewById(R.id.dimeTillEntry);
-        nickle = (EditText) view.findViewById(R.id.nickelTillEntry);
-        penny = (EditText) view.findViewById(R.id.pennyTillEntry);
+        twenty = view.findViewById(R.id.twentyTillEntry);
+        ten = view.findViewById(R.id.tenTillEntry);
+        five = view.findViewById(R.id.fiveTillEntry);
+        one = view.findViewById(R.id.oneTillEntry);
+        quarter = view.findViewById(R.id.quarterTillEntry);
+        dime = view.findViewById(R.id.dimeTillEntry);
+        nickle = view.findViewById(R.id.nickelTillEntry);
+        penny = view.findViewById(R.id.pennyTillEntry);
 
         tillHeader = view.findViewById(R.id.tillHeader);
         tillTotal = view.findViewById(R.id.tillTotal);
 
-        tillHeader.setText("Till Number: " + tillDisplayNumber);
+        tillHeader.setText("Till Name: " + tillName);
         displayValues();
 
         addListeners();
@@ -222,8 +222,8 @@ public class OneTillFrag extends Fragment implements TextWatcher {
 
         if (getArguments() != null) {
             tillNumber = getArguments().getInt(ARG_TILL_NUMBER);
-            tillDisplayNumber = tillNumber +1;
             data = getArguments().getParcelable(ARG_TILL_DATA);
+            tillName = data.getTillName(tillNumber);
         }
     }
 

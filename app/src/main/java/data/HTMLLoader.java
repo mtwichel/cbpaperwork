@@ -20,12 +20,25 @@ public class HTMLLoader {
             ifOverShortString = "RIGHT ON!!";
         }
 
+        String needQuarters;
+        if (data.needBankBagExtraQuarters()) {
+            needQuarters = "+0.50";
+        } else {
+            needQuarters = "";
+        }
         return
                 "<html>\n" +
                         "<head></head>\n" +
                         "<body>\n" +
-                        "<br><br><br><br><br>" +
-                        "\n" +
+                        "<br><br><br>" +
+                        "<table align =\"center\" cell-padding = \"5\">\n" +
+                        "  <tr>\n" +
+                        "    <td>Closers:</td>\n" +
+                        "    <td style =\"border-bottom:1px solid black;\">" + data.getCloser(0) + "</td>\n" +
+                        "    <td> & </td>\n" +
+                        "    <td style =\"border-bottom:1px solid black;\">" + data.getCloser(1) + "</td>\n" +
+                        "</table>" +
+                        "<br><br>" +
                         "<center>\n" +
                         "\n" +
                         "  <table>\n" +
@@ -35,6 +48,7 @@ public class HTMLLoader {
                         "      <td></td>\n" +
                         "    </tr>\n" +
                         "\n" +
+                        "<tr><td><br></td></tr>" +
                         "    <tr>\n" +
                         "      <td>Gross Sales:</td>\n" +
                         "      <td style =\"border-bottom:1px solid black;\">" + format.format(data.getOSValue(OverShort.GROSS)) + "</td>\n" +
@@ -91,7 +105,7 @@ public class HTMLLoader {
                         "    </tr>\n" +
                         "\n" +
                         "  </table>\n" +
-                        "\n" +
+                        "<br><br>" +
                         "<hr>" +
                         "<p align = \"center\">Total Checks: " + format.format(data.getCheckTotal()) + "</p>\n" +
                         "<div align = \"center\">" +
@@ -197,8 +211,8 @@ public class HTMLLoader {
                         "<div align = \"center\">\n" +
                         "<table cellpadding = \"10\" style=\" display: inline-block; margin:0 30px 30px 0;\">\n" +
                         "  <tr>\n" +
-                        "    <td colspan=\"3\">Till Number:</td>\n" +
-                        "    <td>1</td>\n" +
+                        "    <td colspan=\"3\">Till Name:</td>\n" +
+                        "    <td>" + data.getTillName(0) + "</td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>$20</td>\n" +
@@ -257,8 +271,8 @@ public class HTMLLoader {
                         "\n" +
                         "<table cellpadding = \"10\" style=\" display: inline-block; margin:0 30px 30px 0;\">\n" +
                         "  <tr>\n" +
-                        "    <td colspan=\"3\">Till Number:</td>\n" +
-                        "    <td>1</td>\n" +
+                        "    <td colspan=\"3\">Till Name:</td>\n" +
+                        "    <td>" + data.getTillName(1) + "</td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>$20</td>\n" +
@@ -316,8 +330,8 @@ public class HTMLLoader {
                         "\n" +
                         "<table cellpadding = \"10\" style=\" display: inline-block; margin:0 30px 30px 0;\">\n" +
                         "  <tr>\n" +
-                        "    <td colspan=\"3\">Till Number:</td>\n" +
-                        "    <td>1</td>\n" +
+                        "    <td colspan=\"3\">Till Name:</td>\n" +
+                        "    <td>" + data.getTillName(2) + "</td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>$20</td>\n" +
@@ -406,6 +420,7 @@ public class HTMLLoader {
                         "    <td style =\"border-bottom:1px solid black;\">"+data.getBankBagData(BankBag.QUARTER)+"</td>\n" +
                         "    <td>=</td>\n" +
                         "    <td style =\"border-bottom:1px solid black;\">"+format.format(data.getBankBagData(BankBag.QUARTER)*10)+"</td>\n" +
+                        "<td>" + needQuarters + "</td>" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>DR</td>\n" +

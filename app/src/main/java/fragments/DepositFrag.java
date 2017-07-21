@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.cbpaperwork.NewCheck;
+import com.example.android.cbpaperwork.PaperworkActivity;
 import com.example.android.cbpaperwork.R;
 
 import java.text.NumberFormat;
@@ -26,6 +28,8 @@ import java.util.List;
 import java.util.Locale;
 
 import data.*;
+
+import static com.example.android.cbpaperwork.R.drawable.check;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,23 +95,23 @@ public class DepositFrag extends Fragment implements TextWatcher {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NewCheck.class);
-                getActivity().startActivityForResult(intent, 2);
+                getActivity().startActivityForResult(intent, NewCheck.NEW_CHECK);
             }
         });
 
-        hundred = (EditText) view.findViewById(R.id.hundredEntry);
-        fifty = (EditText) view.findViewById(R.id.fiftyEntry);
-        twenty = (EditText) view.findViewById(R.id.twentyEntry);
-        ten = (EditText) view.findViewById(R.id.tenEntry);
-        five = (EditText) view.findViewById(R.id.fiveEntry);
-        two = (EditText) view.findViewById(R.id.twoEntry);
-        one = (EditText) view.findViewById(R.id.oneEntry);
-        dollarCoin = (EditText) view.findViewById(R.id.dollarCoinEntry);
-        fiftyCent = (EditText) view.findViewById(R.id.fiftyCentEntry);
-        quarter = (EditText) view.findViewById(R.id.quarterEntry);
-        dime = (EditText) view.findViewById(R.id.dimeEntry);
-        nickle = (EditText) view.findViewById(R.id.nickleEntry);
-        penny = (EditText) view.findViewById(R.id.pennyEntry);
+        hundred = view.findViewById(R.id.hundredEntry);
+        fifty = view.findViewById(R.id.fiftyEntry);
+        twenty = view.findViewById(R.id.twentyEntry);
+        ten = view.findViewById(R.id.tenEntry);
+        five = view.findViewById(R.id.fiveEntry);
+        two = view.findViewById(R.id.twoEntry);
+        one = view.findViewById(R.id.oneEntry);
+        dollarCoin = view.findViewById(R.id.dollarCoinEntry);
+        fiftyCent = view.findViewById(R.id.fiftyCentEntry);
+        quarter = view.findViewById(R.id.quarterEntry);
+        dime = view.findViewById(R.id.dimeEntry);
+        nickle = view.findViewById(R.id.nickleEntry);
+        penny = view.findViewById(R.id.pennyEntry);
 
         totalDepoist = view.findViewById(R.id.totalDeposit);
         bills = view.findViewById(R.id.bills);
@@ -292,8 +296,7 @@ public class DepositFrag extends Fragment implements TextWatcher {
             }
         }
 
-
-        ListView listView = getView().findViewById(R.id.checks);
+        final ListView listView = getView().findViewById(R.id.checks);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 getContext(),
@@ -301,6 +304,17 @@ public class DepositFrag extends Fragment implements TextWatcher {
                 checksDisplay);
 
         listView.setAdapter(arrayAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Check check = data.getChecks().get(i);
+                Intent intent = new Intent(getActivity(), NewCheck.class);
+                intent.putExtra(NewCheck.CHECK, check);
+                getActivity().startActivityForResult(intent, NewCheck.OLD_CHECK);
+
+                return true;
+            }
+        });
 
         resizeView(listView);
 

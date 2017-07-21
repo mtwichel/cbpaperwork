@@ -69,6 +69,14 @@ public class OverShort implements Parcelable {
     public void addCheck(Check check){
         deposit.addCheck(check);
     }
+
+    public void editCheck(String number, Check check) {
+        deposit.editCheck(number, check);
+    }
+
+    public void deleteCheck(String checkNumber, Check check) {
+        deposit.deleteCheck(checkNumber, check);
+    }
     public double getDepositTotal() {
         return deposit.getTotalDeposit();
     }
@@ -109,4 +117,6 @@ public class OverShort implements Parcelable {
             return new OverShort[size];
         }
     };
+
+
 }

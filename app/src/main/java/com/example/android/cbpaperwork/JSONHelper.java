@@ -69,7 +69,6 @@ public class JSONHelper {
             return datas;
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(context, "Made File", Toast.LENGTH_SHORT).show();
             exportToJSON(context, new PaperworkDataWrapper());
             return importFromJSON(context);
 
@@ -86,7 +85,7 @@ public class JSONHelper {
     }
 
 
-    public static PaperworkData importFromJSON(Context context, String id) {
+    public static PaperworkData importFromJSON(Context context, Integer id) {
         FileReader fileReader = null;
         File file = new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 

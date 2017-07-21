@@ -17,13 +17,15 @@ public class Till implements Parcelable {
     public static final int ONE = 7;
 
     private int tillNumber;
+    private String tillName;
 
     private double total;
 
-    public Till(int tillNumber) {
+    public Till(int tillNumber, String tillName) {
         total = 0.0;
         data = new int[8];
         this.tillNumber = tillNumber;
+        this.tillName = tillName;
     }
 
     public int getData(int currency) {
@@ -57,6 +59,9 @@ public class Till implements Parcelable {
                         data[Till.ONE] * 1;
     }
 
+    public String getTillName() {
+        return tillName;
+    }
 
     @Override
     public int describeContents() {
@@ -67,16 +72,18 @@ public class Till implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeIntArray(this.data);
         dest.writeInt(this.tillNumber);
+        dest.writeString(this.tillName);
         dest.writeDouble(this.total);
     }
 
     protected Till(Parcel in) {
         this.data = in.createIntArray();
         this.tillNumber = in.readInt();
+        this.tillName = in.readString();
         this.total = in.readDouble();
     }
 
-    public static final Parcelable.Creator<Till> CREATOR = new Parcelable.Creator<Till>() {
+    public static final Creator<Till> CREATOR = new Creator<Till>() {
         @Override
         public Till createFromParcel(Parcel source) {
             return new Till(source);

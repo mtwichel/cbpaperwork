@@ -2,6 +2,7 @@ package com.example.android.cbpaperwork;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -23,7 +24,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import data.Check;
@@ -35,20 +38,22 @@ import fragments.OneTillFrag;
 import fragments.OverShortFrag;
 import fragments.TillFrag;
 
-public class PaperworkActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, DepositFrag.OnFragmentInteractionListener, OverShortFrag.OnFragmentInteractionListener, TillFrag.OnFragmentInteractionListener, OneTillFrag.OnFragmentInteractionListener, BankBagFrag.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
+public class PaperworkActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, DepositFrag.OnFragmentInteractionListener, OverShortFrag.OnFragmentInteractionListener, TillFrag.OnFragmentInteractionListener, OneTillFrag.OnFragmentInteractionListener, BankBagFrag.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, ChangeClosersDialog.ChangeClosersDialogListeners {
 
     public static final String REQUEST_CHECK = "request_check";
     public static final String INTENT_EXTRA = "intent_extra";
     private static final int REQUEST_PERMISSION_WRITE = 1001;
     public static String INTENT_NEW = "intent_new";
     public static String INTENT_ID = "intent_id";
+
     private PaperworkData data;
     private PaperworkDataWrapper dataWrapper;
-    private String id;
 
     private DatePickerDialog datePickerDialog;
     Toolbar toolbar;
     private boolean permissionGranted;
+    private View navHeader;
+    private int id;
 
 
     @Override
@@ -56,33 +61,31 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paperwork);
 
-        Log.i("Main", "On Create");
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_main);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Snackbar.make(view, "Sending For Review", Snackbar.LENGTH_SHORT).show();
-
-            }
-        });
-
         dataWrapper = getIntent().getParcelableExtra(INTENT_EXTRA);
+        id = getIntent().getIntExtra(INTENT_ID, 1);
         if (getIntent().getBooleanExtra(INTENT_NEW, true)) {
             //new data
-            data = new PaperworkData(dataWrapper.getNewId());
+            Log.d("PaperworkActivity", "" + id);
+            data = new PaperworkData(id);
             dataWrapper.addData(data);
+            ChangeClosersDialog changeClosersDialog = new ChangeClosersDialog();
+            Bundle b = new Bundle();
+            b.putParcelable(ChangeClosersDialog.ARG_DATA, data);
+            changeClosersDialog.setArguments(b);
+            changeClosersDialog.show(getFragmentManager(), "closers");
         } else {
-            data = dataWrapper.getData("" + getIntent().getIntExtra(INTENT_ID, 1));
+
+            Log.d("PaperworkActivity", "" + id);
+            data = dataWrapper.dataList.get(id);
+
         }
 
-        this.id = data.getId();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -91,6 +94,19 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_main);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+        fab.hide();
+
+        navHeader = navigationView.getHeaderView(0);
+        updateNavHeader();
 
 
         datePickerDialog = new DatePickerDialog(
@@ -122,11 +138,19 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
                 datePickerDialog = new DatePickerDialog(this, PaperworkActivity.this, data.getYear(), data.getMonth(), data.getDay());
                 datePickerDialog.show();
                 break;
-            case R.id.action_clear_data:
-                finish();
-                break;
-            case R.id.action_make_HTML:
+
+            case R.id.action_print:
+                InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                mgr.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 PrintingHelper printingHelper = new PrintingHelper(this, data);
+
+                break;
+            case R.id.action_edit_closers:
+                ChangeClosersDialog changeClosersDialog = new ChangeClosersDialog();
+                Bundle b = new Bundle();
+                b.putParcelable(ChangeClosersDialog.ARG_DATA, data);
+                changeClosersDialog.setArguments(b);
+                changeClosersDialog.show(getFragmentManager(), "closers");
 
                 break;
         }
@@ -144,8 +168,10 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
             @Override
             public void onClick(View view) {
                 data.revertToPreDate();
+                updateNavHeader();
             }
         }).show();
+        updateNavHeader();
 
     }
 
@@ -194,11 +220,6 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
                 fragment.setArguments(bankBagBundle);
                 title = "Bank Bag";
                 break;
-            case R.id.nav_records:
-                Intent intent = new Intent(this, RecordViewActivity.class);
-                intent.putExtra(RecordViewActivity.ARG_DATA, data);
-                startActivity(intent);
-                break;
         }
 
 
@@ -227,12 +248,22 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("Hello", "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
 
         Check check = data.getParcelableExtra(PaperworkActivity.REQUEST_CHECK);
-        this.data.addCheck(check);
+        if (check != null) {
+            //not deleting new check
+            if (resultCode == NewCheck.NEW_CHECK) {
+                this.data.addCheck(check);
+            } else if (resultCode == NewCheck.OLD_CHECK) {
+                this.data.editCheck(check.getCheckNumber(), check);
+            } else if (resultCode == NewCheck.DELETE_CHECK) {
+                Log.d("PaperworkActivity", "About to delete Check");
+                this.data.deleteCheck(check.getCheckNumber(), check);
+            }
+        }
 
+        displayView(R.id.nav_deposit);
 
     }
 
@@ -240,7 +271,7 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
     protected void onStop() {
         super.onStop();
         Log.i("Main", "On Stop");
-        if(!permissionGranted){
+        if (!permissionGranted) {
             checkPermissions();
         }
 
@@ -263,7 +294,7 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
         super.onRestart();
         Log.i("Main", "On Restart");
 
-        JSONHelper.importFromJSON(this, data.getId());
+        JSONHelper.importFromJSON(this, id);
     }
 
     /* Checks if external storage is available for read and write */
@@ -315,6 +346,21 @@ public class PaperworkActivity extends AppCompatActivity implements DatePickerDi
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onChangeClosersDialogPositiveClick(android.app.DialogFragment dialog, String c1, String c2) {
+        data.setClosers(c1, c2);
+        updateNavHeader();
+
+    }
+
+    public void updateNavHeader() {
+        TextView closerView = navHeader.findViewById(R.id.nav_closers);
+        TextView dateView = navHeader.findViewById(R.id.nav_date);
+
+        closerView.setText("Closers: " + data.getCloser(0) + " & " + data.getCloser(1));
+        dateView.setText(data.getDateString());
     }
 
 }

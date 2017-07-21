@@ -1,28 +1,33 @@
 package com.example.android.cbpaperwork;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 import data.PaperworkData;
 import data.PaperworkDataWrapper;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private static final int REQUEST_PERMISSION_WRITE = 1002;
     private ArrayList<String> displayList;
     private ListView listView;
+    List<PaperworkData> dataList;
     PaperworkDataWrapper dataWrapper;
     private boolean permissionGranted;
 
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intent = new Intent(MainActivity.this, PaperworkActivity.class);
                 intent.putExtra(PaperworkActivity.INTENT_EXTRA, dataWrapper);
                 intent.putExtra(PaperworkActivity.INTENT_NEW, true);
+                intent.putExtra(PaperworkActivity.INTENT_ID, dataWrapper.dataList.size());
                 startActivity(intent);
             }
         });
@@ -71,8 +78,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_clear_data:
-                JSONHelper.deleteJson();
-                getData();
+                new AlertDialog.Builder(this)
+                        .setTitle("Clear All Data")
+                        .setMessage("Are You Sure You Want to Clear All Data? This CANNOT be undone!")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                JSONHelper.deleteJson();
+                                getData();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show();
                 break;
         }
 
@@ -81,14 +98,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        String selectedFromList = (listView.getItemAtPosition(position).toString());
-        Toast.makeText(this, selectedFromList, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, PaperworkActivity.class);
-        intent.putExtra(PaperworkActivity.INTENT_EXTRA, dataWrapper);
-        intent.putExtra(PaperworkActivity.INTENT_NEW, false);
-        intent.putExtra(PaperworkActivity.INTENT_ID, position + 1);
-        startActivity(intent);
+        Snackbar.make(listView, "ToDo: Replace with record view", Snackbar.LENGTH_SHORT).show();
     }
+
 
     @Override
     protected void onResume() {
@@ -107,15 +119,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             checkPermissions();
         }
         dataWrapper = JSONHelper.importFromJSON(this);
-        List<PaperworkData> dataList = dataWrapper.getDatas();
-        displayList = new ArrayList<>();
-        for (PaperworkData d: dataList) {
-            displayList.add(d.getId());
-        }
+
         listView = (ListView) findViewById(R.id.paperwork_list);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,  android.R.layout.simple_list_item_1, displayList);
+        PaperworkDataListAdapter arrayAdapter = new PaperworkDataListAdapter(this, R.layout.paperwork_item, dataWrapper.dataList);
+        arrayAdapter.sort(new Comparator<PaperworkData>() {
+            @Override
+            public int compare(PaperworkData data1, PaperworkData data2) {
+                if (data1.getId() < data2.getId()) {
+                    //1 < 2
+                    return -1;
+                } else if (data1.getId() < data2.getId()) {
+                    return 1;
+                } else if (data1.getId() == data2.getId()) {
+                    try {
+                        throw new DataFormatException();
+                    } catch (DataFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return 0;
+            }
+        });
         listView.setAdapter(arrayAdapter);
 
+        registerForContextMenu(listView);
         listView.setOnItemClickListener(this);
     }
 
@@ -170,4 +197,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId() == R.id.paperwork_list) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_selected_paperwork, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.delete:
+                new AlertDialog.Builder(this)
+                        .setTitle("Delete Paperwork Data")
+                        .setMessage("Are You Sure You Want to Delete this Data? This CANNOT be undone!")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dataWrapper.dataList.remove(info.position);
+                                JSONHelper.exportToJSON(MainActivity.this, dataWrapper);
+                                getData();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show();
+
+
+                return true;
+            case R.id.edit:
+                Log.d("PaperworkActivity", "Position: " + info.position);
+                Intent intent = new Intent(MainActivity.this, PaperworkActivity.class);
+                intent.putExtra(PaperworkActivity.INTENT_EXTRA, dataWrapper);
+                intent.putExtra(PaperworkActivity.INTENT_NEW, false);
+                intent.putExtra(PaperworkActivity.INTENT_ID, info.position);
+
+                startActivity(intent);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
 }

@@ -9,23 +9,19 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_clear_data"
-        android:title="Clear Data"
+        android:id="@+id/action_print"
+        android:title="Print Paperwork"
+        app:showAsAction="always"
+        android:icon="@drawable/printer" />
+
+    <item
+        android:title="Edit Closers"
+        android:id="@+id/action_edit_closers"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_make_pdf"
-        android:title="Make PDF"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_make_HTML"
-        android:title="Make HTML"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_change_date"
-        android:orderInCategory="0"
         android:title="Change Date"
-        app:showAsAction="always"
-        android:icon="@drawable/calendar" />
+        app:showAsAction="never" />
 
 </menu>

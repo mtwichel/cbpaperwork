@@ -27,6 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBaseline="@id/check_number"
         android:layout_toEndOf="@id/check_number"
+        android:selectAllOnFocus="true"
         android:ems="10"
         android:inputType="number"
         android:padding="5dp" />
@@ -50,6 +51,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBaseline="@id/check_name"
         android:layout_toEndOf="@id/check_name"
+        android:selectAllOnFocus="true"
         android:ems="10"
         android:inputType="textCapWords"
         android:padding="5dp" />
@@ -73,6 +75,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBaseline="@id/check_value"
         android:layout_toEndOf="@id/check_value"
+        android:selectAllOnFocus="true"
         android:ems="10"
         android:inputType="numberDecimal"
         android:padding="5dp" />
